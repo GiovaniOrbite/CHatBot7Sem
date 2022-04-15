@@ -1,0 +1,116 @@
+<!-- Toda a configuracao do documento da pag devera vir dentro da tag head-->
+<!-- Todo conteúdo visivel na pág devera vir dentro da tag body-->
+
+<!DOCTYPE html>
+<html lang="pt_br"> <!-- lang é um atributo que define a linguagem do html -->
+<head>
+    <meta charset="UTF-8"> <!-- a tag meta define as propriedades e atributos especificos da pagina como charset q define o tipo de texto usado na pag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- o atributo name e content configura a estilizacao e o tamanho da pag -->
+    <!-- <style>
+        #page-study{
+            color: orange
+        } /*ordem de prioridade mais forte no css*/
+        .bodie h1 {
+            color: red;
+        } /*ordem de prioridade menos forte no css*/
+        h1{
+            color: green;
+        } /* ordem de prioridade mais fraco no css*/
+    </style> outra forma de implementar o css na pag e esse ".red" referencia a propriedade class das tags e muda a cor dos valores delas -->
+    <title>Proffy | Sua plataforma de estudos online</title> <!-- a tag title configura o titulo da pag-->
+    <link rel="stylesheet" href="/styles/main.css"> <!-- o link vai puxar o css de um arquivo de fora do index -->
+    <link rel="stylesheet" href="/styles/partials/header.css">
+    <link rel="stylesheet" href="/styles/partials/page-give-classes.css">
+    <link rel="stylesheet" href="/styles/partials/forms.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+    <script src="/scripts/addField.js" defer></script><!--a propriedade defer faz com que o javascript seja executado depois que as configurações do head e do body foram renderizadas na pág-->
+</head>
+<body id = "page-give-classes"> <!-- o id define um identificador unico para o css-->
+    <div id = "container">
+        <header class="page-header">
+            <div class="top-bar-container">
+                <a href="/"> <!-- a "/" representa a pagina inicial ou o index das pág-->
+                <img src="/images/icons/back.svg" alt="Voltar">
+                </a>
+                <img src="/images/logo.svg" alt="Proffy">
+            </div>
+            <div class="header-content">
+                <strong>Que incrível que você quer dar aulas</strong>
+                <p>O primeiro passo é preencher esse formulário de inscrição</p>
+                
+            </div>
+        </header> <!--cabeçalho-->
+        <main>
+            <form action = "/save-classes" id="create-class" method = "POST"> <!-- os dados do formulário irá ser enviados para o back-end através do método post-->
+                <fieldset> <!--tag utilizada para agrupamento de dados-->
+                    <legend>Seus dados</legend><!--toda fieldset precisa ser com essa tag pois ele é o nome do agrupamento dos dados-->
+                    <div class="input-block">
+                        <label for="name">Nome completo</label>
+                        <input name="name" id="name" required><!--todo input q precisar enviar dados para o back-end, necessita da propriedade name para ser identificado-->
+                    </div>
+                    <div class="input-block">
+                        <label for="avatar">Link da sua foto <small>(comece com https://)</small><!--a tag small insere um pequeno texto dps do texto da label--></label>
+                        <input name="avatar" id="avatar" type="url" required>
+                    </div>
+                    <div class="input-block">
+                        <label for="whatsapp">Whatsapp <small>(somente números)</small></label>
+                        <input name="whatsapp" id="whatsapp" type="number" required>
+                    </div>
+                    <div class="textarea-block">
+                        <label for="bio">Biografia</label>
+                        <textarea name="bio" id="bio" required></textarea><!--a tag textarea disponibiliza um campo para inserir textos dentro dele-->
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Sobre a aula</legend>
+                    <div class="select-block">
+                        <label for="subject">Matéria</label>
+                        <select name="subject" id="subject" required>
+                            <option value="">Selecione uma opção</option>
+                            {%for subject in subjects %}
+                                <option value="{{loop.index}}">{{subject}}</option> <!-- a função "loop.index" faz com que o value receba o valor que está sendo gerado no subject do for-->    
+                            {%endfor%}
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="cost">Custo da sua hora/aula <small>(R$)</small></label>
+                        <input name="cost" type="cost" id="cost" type="number" required>
+                    </div>
+                </fieldset>
+                <fieldset id="schedule-items">
+                    <legend>Horários disponíveis
+                        <button type="button" id="add-time">+ Novo Horário</button>
+                    </legend>
+                    <div class="schedule-item">
+                        <div class="select-block">
+                            <label for="weekday">Dia da semana</label>
+                            <select name="weekday[]" id="weekday" required><!--essa técnica de colocar os colchetes no name do select possibilita mandar mais de um valor para o back-end-->
+                            <option value="">Selecione uma opção</option>
+                            {%for weekday in weekdays %}
+                                <option value="{{loop.index0}}">{{weekday}}</option> <!-- a função "loop.index" faz com que o value receba o valor que está sendo gerado no subject do for-->    
+                            {%endfor%}
+                            </select>
+                        </div>
+                        <div class="input-block">
+                            <label for="time_from">Das</label>
+                            <input type="time" name="time_from[]" required>
+                        </div>
+                        <div class="input-block">
+                            <label for="time_to">Até</label>
+                            <input type="time" name="time_to[]" required>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <footer>
+                <p>
+                    <img src="/images/icons/warning.svg" alt="Aviso importante">
+                    Importante! <br>
+                    Preencha todos os dados
+                </p>
+                <button type="submit" form="create-class">Salvar cadastro</button><!--esse botão está fora do formulário para enviar os dados pro back-end, para enviar os dados do formulário mesmo fora ele estando fora do formulário, basta colocar o id do formulário que deseja enviar-->
+            </footer>
+        </main><!--conteudo principal da pag-->
+    </div>
+</body>
+</html>

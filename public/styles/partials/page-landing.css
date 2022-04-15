@@ -1,0 +1,146 @@
+/* o margin e o border-radius fazem as alteracoes nos elementos no sentido horario 
+    
+    EX:
+    margin-top: 30px; (1º)
+    margin-right: 20px; (2º)
+    margin-bottom: 10px; (3º)
+    margin-left: 50px; (4º)
+
+    ou
+
+    border-radius-top-left: 30px; (1º)
+    border-radius-top-right: 15px; (2º)
+    border-radius-bottom-right: 45px; (3º)
+    border-radius-bottom-left: 80px; (4º)
+*/
+
+#page-landing{
+    background: var(--color-primary);
+}
+
+#page-landing #container{
+    color: var(--color-text-in-primary);
+}
+
+.logo-container img{
+    height: 10rem;
+}
+
+.logo-container{
+    text-align: center; /*alinhamento do texto dentro do container*/
+    margin-bottom: 3.2rem; /*margem abaixo dos conteudos no container*/
+}
+
+.logo-container h2{
+    font-weight: 500; /*peso (espessura) da fonte na pag*/
+    font-size: 3.6rem;
+    line-height: 4.6rem; /*altura da linha do texto*/
+    margin-top: 0.8rem; /*margem acima dos conteudos no container*/
+}
+
+.hero-image{
+    width: 100%;
+}
+
+.buttons-container{
+    display: flex; /*coloca todos os elementos um ao lado do outro manipulando a posicao deles*/
+    justify-content: center; /*alinha os elementos conforme por passado um parametro e funciona em conjunto com a propriedade "display" */
+    margin: 3.2rem 0;
+}
+
+.buttons-container a{
+    width: 30rem;
+    height: 10.4rem;
+    border-radius: 0.8rem; /*arredonda as bordas do elemento*/
+    margin-right: 1.6rem;
+    font: 700 2.4rem Archivo;
+    display: flex;
+    align-items: center; /*alinha a posicao em relacao a um elemento*/
+    justify-content: center;
+    text-decoration: none; /*tirar a formatacao do texto dentro do elemento*/
+    color: var(--color-button-text);
+    transition: background 0.2s; /*propriedade de transicao e animacao no css*/
+}
+
+.buttons-container a img {
+    width: 4rem;
+    margin-right: 2.4rem;
+}
+
+.buttons-container a.study{
+    background: var(--color-primary-lighter);
+}
+
+.buttons-container a.study:hover{ /* a propriedade hover atribui as propriedades de dentro dessa  classe uma aplicacao somente qdo o botao estiver em um estado "hover" (mouse encima do botao)*/
+    background: var(--color-primary-light);
+}
+
+.buttons-container a.give-classes{
+    background: var(--color-secundary);
+    margin-right: 0;
+}
+
+.buttons-container a.give-classes:hover{
+    background: var(--color-secundary-dark);
+}
+
+.total-connections{
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total-connections img{
+    margin-left: 0.8rem;
+}
+
+@media (max-width: 1100px){
+    :root{
+        font-size: 33%; /*modificar as medidas rem*/
+    }
+
+     .hero-image {
+        height: 65rem;
+    } 
+}
+
+@media (min-width: 1100px){ /*se a largura da tela estiver acima desse tamanho passado por parâmetro, essa propridade vai executar as funções dentro dela*/
+
+    #page-landing #container{
+        max-width: 1100px;
+        display: grid; /*divide a tela em colunas e linhas para manipular os objetos com   maior facilidade*/
+        grid-template-columns: 2fr 1fr 2fr; /*3 colunas dividas em frações iguais, mas com a junção de colunas para formar uma coluna única*/
+        grid-template-rows: 350px 1fr; /*linhas de divisão da tela para a manipulação dos elementos dentro dela*/
+        grid-template-areas: /*define áreas estratégicas dos elementos na tela segundo as colunas e linhas do grid*/
+        "proffy image image" /*1 linha do grid*/
+        "button button texting"; /*2 linha do grid*/
+        column-gap: 87px; /*usado para separar os elementos dentro das áreas estratégicas do grid*/
+        row-gap: 86px;
+    }
+
+    .logo-container{
+        grid-area: proffy;/*aloca os elementos nas áreas estratégicas definidas pelo grid-template-areas*/
+        text-align: initial;
+        align-self: center; /*delimita as marcações do grid para que os elementos não ultrapassem o tamanho do grid*/
+        margin: 0;
+    }
+    .logo-container img{
+        height: 127px;
+    }
+    .hero-image{
+        grid-area: image;
+        height: 350px;
+    }
+    .buttons-container{
+        grid-area: button;
+        justify-content: flex-start; /*esse justify-content vai sobrescrever o justify-content do button-container fora do media colocando os botoes no início do elemento flex*/
+        margin: 0;
+    }
+    .total-connections{
+        grid-area: texting;
+        justify-self: end; /*esse justify-self é o justify do grid que vai alinhar o conteúdo do grid ao final do grid, que no caso é a extremidade direita do grid*/
+        font-size: 1.2rem;
+    }
+
+} /*essa propriedade "media" é usada somente qdo ele cumprir certo padrão passado por parâmetro dentro dos parenteses*/

@@ -1,0 +1,43 @@
+
+.select-block label, .input-block label, .textarea-block label{
+    font-size: 1.4rem;
+    color: var(--color-text-complement);
+}
+
+.input-block input, .select-block select, .textarea-block textarea{
+    width: 100%;
+    height: 5.6rem;
+    margin-top: 0.8rem;
+    border-radius: 0.8rem;
+    background: var(--color-input-background);
+    border: 1px solid var(--color-line-in-white);
+    outline: 0; /*quando seleciona uma opção, fica uma linha forte ao redor da caixa de seleção, com o outline em 0, essa linha fica inexistente*/
+    padding: 0 1.6rem;
+    font: 1.6rem Archivo;
+}
+
+.textarea-block textarea{
+    padding: 1.2rem 1.6rem;
+    height: 16rem;
+    resize: vertical;/*essa tag restringe os movimentos do usuário para alterar o tamanho dos campos no formulário*/
+}
+
+.input-block, .textarea-block{
+    position: relative;
+}
+
+.input-block:focus-within::after, .textarea-block:focus-within::after{ /*o focus-within se significa que quando estiver algum elemento em foco dentro do input block e essa propriedade after é um pseudo-elemento e faz com que o css crie um elemento html somente quando o o elemento dentro do input block estiver em foco */
+    content: ""; /*conteúdo do elemento html*/
+    width: calc(100% - 3.2rem); /*cálculo da largura do elemento html onde essa propriedade vai pegar a largura máxima do input block e subtrair por um valor determinado colocado no cálculo*/
+    height: 2px;
+    background: var(--color-primary-light);
+    position: absolute; /*o position: absolute funciona como se pegasse uma outra pág html e colocasse por cima da página já existente, fazendo com q tenha q configurar o posicionamento lateral, para que esse elemento apareça no lugar desejado é necessário que o lugar onde irá receber esse elemento tenha o position: relative*/
+    left: 1.6rem;
+    bottom: 0;
+}
+
+label small {
+    font-size: 1.2rem;
+    padding-left: 1.2rem;
+    color: var(--color-small-info);
+}

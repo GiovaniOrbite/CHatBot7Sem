@@ -1,0 +1,19 @@
+{
+  "name": "teacher-panel-system-main-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "nunjucks": "^3.2.3",
+    "sqlite-async": "^1.1.3"
+  }
+}
