@@ -90,6 +90,110 @@
                 {% endfor %} <!-- para conseguir pegar os valores vindos do back-end e renderizar no front-end, precisa usar uma estrutura de repetição para q não precise pegar todos os parâmetros, um por um e passando para o front-end -->
             {% endif %}    
         </main><!--conteudo principal da pag-->
+        <div class="box" id="myForm">
+            <button type="button" class="btn-cancel" onclick="closeForm()">Close</button>
+            <div style="text-align: center;" class="top">
+                <h1>Proffy</h1>
+            </div>
+            <div id="mid">
+            </div>
+            <div class="input">
+                <input type="text" id="userBox" onkeydown="if(event.keyCode == 13){ talk() }"placeholder="Digite uma messagem">
+            </div>
+        </div>
+        <div class="open-chatbot">
+            <button class="open-chatbot-btn" style="margin-left: 68em; margin-top: 25em; padding: 25px; background-color: purple; color: white; border-radius: 38px; position: absolute; cursor: pointer; @media (min-height: 900px) {margin-left: 105em;}" onclick="openForm()">ChatBot</button>
+        </div>
     </div>
+    <script>
+                function openForm() {
+                    document.getElementById("myForm").style.display = "block";
+                    addInitialBotMessage();
+                    
+        }
+
+function addInitialBotMessage() {
+    const node = document.createElement('div');
+    node.id = 'chat';
+    const textNode = document.createTextNode("Olá! Seja bem vindo(a) ao Proffy! Meu nome é Chatinho e irei te auxliliar em suas dúvidas. Você é um Aluno ou Professor ? 😁");
+    node.classList.add('bot-text');
+    node.appendChild(textNode);
+    document.getElementById('mid').appendChild(node);
+}
+
+function closeForm() {
+    var elem = document.getElementById('chat');
+    elem.parentElement.removeChild(elem);
+    document.getElementById("myForm").style.display = "none";
+}
+
+function talk(){
+
+var know ={
+    "Hi":"Hello",
+    "How Are You?":"Great !",
+    "Bye":"Have A Nice Day !",
+    "Hello":"Hi , Whats Up",
+    "👍":"👍",
+    "Aluno":"Ok! agora que já estamos mais íntimos, me diga, sua dúvida é sobre pagamento ou sobre as disciplinas?",
+    "aluno":"Ok! agora que já estamos mais íntimos, me diga, sua dúvida é sobre pagamento ou sobre as disciplinas?",
+    "Aulas":"Temos as seguintes disciplinas disponíveis em nossa plataforma: Artes, Biologia, Ciências, Educação Física, Física, Geografia, História, Matemática, Português e Química.",
+    "aulas":"Temos as seguintes disciplinas disponíveis em nossa plataforma: Artes, Biologia, Ciências, Educação Física, Física, Geografia, História, Matemática, Português e Química.",
+    "Disciplinas":"Temos as seguintes disciplinas disponíveis em nossa plataforma: Artes, Biologia, Ciências, Educação Física, Física, Geografia, História, Matemática, Português e Química.",
+    "disciplinas":"Temos as seguintes disciplinas disponíveis em nossa plataforma: Artes, Biologia, Ciências, Educação Física, Física, Geografia, História, Matemática, Português e Química.",
+    "Materias":"Temos as seguintes disciplinas disponíveis em nossa plataforma: Artes, Biologia, Ciências, Educação Física, Física, Geografia, História, Matemática, Português e Química.",
+    "materias":"Temos as seguintes disciplinas disponíveis em nossa plataforma: Artes, Biologia, Ciências, Educação Física, Física, Geografia, História, Matemática, Português e Química.",
+    "Cursos":"Temos as seguintes disciplinas disponíveis em nossa plataforma: Artes, Biologia, Ciências, Educação Física, Física, Geografia, História, Matemática, Português e Química.",
+    "cursos":"Temos as seguintes disciplinas disponíveis em nossa plataforma: Artes, Biologia, Ciências, Educação Física, Física, Geografia, História, Matemática, Português e Química.",
+    "Pagamento":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "pagamento":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "Preço":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "preço":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "Mensalidade":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "mensalidade":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "Valor":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "valor":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "Custos":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "custos":"Os preços das aulas são com base na quantidade de horas marcadas. Sendo que cada professor decide quanto cobrará em cada matéria.",
+    "Horario":"A duração da aula é algo definido pelo professor, você poderá escolher quantas horas ficará disponível para lecionar.",
+    "horario":"A duração da aula é algo definido pelo professor, você poderá escolher quantas horas ficará disponível para lecionar.",
+    "Duração":"A duração da aula é algo definido pelo professor, você poderá escolher quantas horas ficará disponível para lecionar.",
+    "duração":"A duração da aula é algo definido pelo professor, você poderá escolher quantas horas ficará disponível para lecionar.",
+    "Tempo":"A duração da aula é algo definido pelo professor, você poderá escolher quantas horas ficará disponível para lecionar.",
+    "tempo":"A duração da aula é algo definido pelo professor, você poderá escolher quantas horas ficará disponível para lecionar.",
+    "Periodo":"A duração da aula é algo definido pelo professor, você poderá escolher quantas horas ficará disponível para lecionar.",
+    "periodo":"A duração da aula é algo definido pelo professor, você poderá escolher quantas horas ficará disponível para lecionar."
+
+};
+
+var user = document.getElementById('userBox').value;
+
+if(user in know){
+    userAnswer();
+    setTimeout(botResponse, 1500); 
+    const inputValue = document.getElementById('userBox');
+    inputValue.value = '';
+}else{
+    document.getElementById('chatLog').innerHTML = "NÃO ENTENDO PORRA NENHUMA CARALHO.";
+}
+
+function botResponse() {
+    const textBot = know[user];
+    const node = document.createElement('p');
+    const textNode = document.createTextNode(textBot);
+    node.appendChild(textNode);
+    document.getElementById('chat').appendChild(node);
+}
+
+function userAnswer() {
+    const textUser = user;
+    const node = document.createElement('p');
+    node.classList.add('txt-align', 'mrg-top', 'mrg-right', 'clr-blue');
+    const textNode = document.createTextNode(textUser);
+    node.appendChild(textNode);
+    document.getElementById('chat').appendChild(node);
+}
+}
+    </script>
 </body>
 </html>
