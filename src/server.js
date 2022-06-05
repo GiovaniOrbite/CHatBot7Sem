@@ -25,6 +25,7 @@ server.use(express.static("public")) //comando usado para fazer alguma configura
 
 // rotas da aplicação
 .get("/", pageLanding)
+.get("/home", pageLanding)
 .get("/study", pageStudy)
 .get("/give-classes", pageGiveClasses)
 .post("/save-classes", saveClasses)
